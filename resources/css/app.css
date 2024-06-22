@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btnsetg {
+    @apply mr-4 font-bold text-base text-center bg-gray-600 text-white py-2 px-4 rounded;
+}
+
+.btnsetr {
+    @apply mr-4 font-bold text-base text-center bg-red-700 text-white py-2 px-4 rounded;
+}
