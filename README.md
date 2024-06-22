@@ -38,4 +38,4 @@
 
 ## 参考サイト
 このアプリケーションは、以下の参考サイトを基に作成されました。
-- [Laravelの教科書]([URL](https://textpro.addisteria.com/)
+- [Laravelの教科書](https://textpro.addisteria.com/)
