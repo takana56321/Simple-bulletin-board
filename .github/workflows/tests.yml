@@ -3,45 +3,32 @@ name: Tests
 on:
   push:
     branches:
-      - master
-      - '*.x'
+      - main
   pull_request:
+    branches:
+      - main
   schedule:
     - cron: '0 0 * * *'
 
-permissions:
-  contents: read
-
 jobs:
-  tests:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
-      fail-fast: true
       matrix:
-        php: ['8.0', 8.1, 8.2]
-
-    name: PHP ${{ matrix.php }}
+        php: [8.2.12]  # PHPバージョンを8.2.12に設定
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
-          coverage: none
 
-      - name: Install Composer dependencies
+      - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
 
-      - name: Copy environment file
-        run: cp .env.example .env
-
-      - name: Generate app key
-        run: php artisan key:generate
-
-      - name: Execute tests
+      - name: Run tests
         run: vendor/bin/phpunit
+
