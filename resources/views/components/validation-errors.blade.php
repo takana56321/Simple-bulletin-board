@@ -1,13 +1,11 @@
-@props(['messages'])
+@props(['errors'])
 
-@if ($messages)
-    <ul {{ $attributes->merge(['class' => 'text-sm text-red-600 space-y-1']) }}>
-        @foreach ((array) $messages as $message)
-            <li>{{ $message }}</li>
-        @endforeach
-            {{-- ここから追加 --}}
-            @if(empty($errors->first('image')))
-                <li>画像ファイルがあれば、再度、選択してください。</li>
-            @endif
-    </ul>
+@if ($errors->any())
+    <div {{ $attributes->merge(['class' => 'mb-4']) }}>
+        <ul class="text-sm text-red-600 space-y-1">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif

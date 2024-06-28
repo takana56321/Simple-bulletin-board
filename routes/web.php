@@ -47,6 +47,9 @@ Route::get('language/{locale}', function ($locale) {
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/post', [PostController::class, 'store'])->name('post.store');
 Route::get('/post', [PostController::class, 'index'])->name('post.index');
+Route::get('post/mypost', [PostController::class, 'mypost'])->name('post.mypost');
+Route::get('post/mycomment', [PostController::class, 'mycomment'])->name('post.mycomment');
+Route::resource('post', PostController::class);
 Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
 Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::patch('/post/{post}', [PostController::class, 'update'])->name('post.update');
@@ -54,6 +57,3 @@ Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.de
 Route::post('post/comment/store', [CommentController::class, 'store'])->name('comment.store');
 Route::get('contact/create', [ContactController::class, 'create'])->name('contact.create');
 Route::post('contact/store', [ContactController::class, 'store'])->name('contact.store');
-Route::get('post/mypost', [PostController::class, 'mypost'])->name('post.mypost');
-Route::get('post/mycomment', [PostController::class, 'mycomment'])->name('post.mycomment');
-Route::resource('post', PostController::class);
